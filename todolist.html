@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+
+<style>
+
+body
+{
+    background-image: linear-gradient(100deg, pink,lavender);
+}
+
+#box
+{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    height: 400px;
+    width: 500px;
+    border: none;
+    box-shadow: 10px 10px 10px 2px palevioletred;
+    animation-name: move;
+    animation-duration: 5s;
+}
+
+
+@keyframes move
+{
+    from {top: -100%;}
+    to {top: 20%;}
+}
+
+#front
+{
+    position: absolute;
+    top: 0%;
+    height: 50px;
+    width: 100%;
+    background-color: palevioletred;
+}
+
+
+#input-wrapper-box
+{   
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    height: 75px;
+    width: 80%;
+    background-color: palevioletred;
+    display: inline-block;
+}
+
+#inpt
+{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translateX(-50%)translateY(-50%);
+    height:40px;
+    width:180px;
+    background: transparent;
+    border: none;
+    box-shadow:  5px 5px 5px 5px lavender;
+}
+
+#btn
+{
+    position: absolute;
+    right: 15%;
+    top: 24%;
+    border-radius: 8px;
+    height: 40px;
+    width: 60px;
+    color: palevioletred;
+    background-color: white;
+    border: none;
+    box-shadow:  5px 5px 5px 5px pink;
+    cursor: pointer;
+}
+
+#output-box
+{
+    height: 240px;
+    width: 500px;
+    /* border: 2px solid red; */
+    position: absolute;
+    top: 40%;
+}
+
+
+
+</style>
+</head>
+
+<body>
+    <div id="box">
+<div id="front">
+    <p style="color: white; text-align:center; font-size: 20px;">MY TO-DO LIST</p>
+</div>
+<div id="input-wrapper-box">
+    <p><input type="text" name="inputtext" id="inpt" placeholder="add your tasks..." ></p>
+    <p><input type="button" value="ADD" id="btn" onclick="addTask()"></p>
+</div>
+
+<div id="output-box">
+</div>
+    </div>
+
+
+<script>
+
+b=document.getElementById("btn")
+b.onclick=function()
+{
+    txt=document.getElementById("inpt").value
+    spn=document.createElement("span");
+    im=document.createElement("img");
+    p=document.createElement("p");
+    n=document.createTextNode(txt)
+    spn1=document.createElement("span");
+    spn1.appendChild(n)
+    p.appendChild(spn);
+    p.appendChild(spn1);
+  box=document.getElementById("output-box")
+  box.insertBefore(p,box.lastChild)
+
+box.childNodes.forEach(function(e){
+
+e.onclick=function(){
+im=document.createElement("img")
+im.src="check-mark-line-icon.png"
+im.height=10
+im.width=10
+if(e.childNodes[0].innerHTML==="")
+{
+
+
+e.childNodes[0].appendChild(im)
+e.childNodes[1].style.textDecoration="line-through"
+  e.childNodes[1].style.padding="20px"
+
+
+
+}
+else
+{
+ e.childNodes[0].remove()
+
+}
+}
+})
+
+
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
